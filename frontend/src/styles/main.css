@@ -1,0 +1,64 @@
+@import "tailwindcss";
+@import "@fontsource-variable/cairo/wght.css";
+
+@theme {
+  --font-sans: "Cairo Variable", ui-sans-serif, system-ui, sans-serif;
+
+  /* Warm ivory surfaces */
+  --color-ivory: #f6f1e7;
+  --color-cream: #fbf8f1;
+  --color-sand: #ebe3d3;
+  --color-sand-dark: #d9cfbb;
+
+  /* Forest green brand */
+  --color-forest-50: #eef3ef;
+  --color-forest-100: #d9e5dc;
+  --color-forest-300: #8fae9b;
+  --color-forest-500: #3f6652;
+  --color-forest-600: #2f5240;
+  --color-forest-700: #264535;
+  --color-forest-800: #1f3a2e;
+  --color-forest-900: #172b22;
+
+  /* Text */
+  --color-charcoal: #232a26;
+  --color-muted: #7d827b;
+
+  /* Destructive / warning */
+  --color-terracotta: #b0443a;
+  --color-terracotta-dark: #963a31;
+  --color-terracotta-soft: #f4dcd6;
+
+  --radius-card: 1.25rem;
+  --radius-control: 0.875rem;
+  --shadow-soft: 0 1px 2px rgb(35 42 38 / 0.05), 0 4px 14px rgb(35 42 38 / 0.05);
+}
+
+@layer base {
+  html { background: var(--color-ivory); color: var(--color-charcoal); -webkit-tap-highlight-color: transparent; }
+  body { font-family: var(--font-sans); min-height: 100dvh; line-height: 1.65; }
+  :focus-visible { outline: 2px solid var(--color-forest-500); outline-offset: 2px; }
+  button { cursor: pointer; }
+  button:disabled { cursor: not-allowed; }
+  ::selection { background: var(--color-forest-100); }
+}
+
+/* Flip directional icons in RTL */
+.rtl-flip { transform: scaleX(-1); }
+
+/* Shared transitions */
+.fade-enter-active, .fade-leave-active { transition: opacity .2s ease; }
+.fade-enter-from, .fade-leave-to { opacity: 0; }
+.rise-enter-active, .rise-leave-active { transition: opacity .22s ease, transform .22s ease; }
+.rise-enter-from, .rise-leave-to { opacity: 0; transform: translateY(12px); }
+.page-enter-active { transition: opacity .18s ease, transform .18s ease; }
+.page-enter-from { opacity: 0; transform: translateY(6px); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+
+.skeleton { background: linear-gradient(90deg, var(--color-sand) 25%, #f1eadc 50%, var(--color-sand) 75%); background-size: 200% 100%; animation: shimmer 1.4s infinite linear; }
+@keyframes shimmer { to { background-position: -200% 0; } }
+
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
